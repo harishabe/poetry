@@ -1,0 +1,96 @@
+<section class="signup animated fadeIn">
+  <div class="container" ng-controller="regCtrl">
+    <div class="col-md-6 col-sm-6 col-xs-6 col-lg-6 login-layout">
+   
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <div class="logo">
+            <i class="fa fa-user"></i>
+          </div>
+
+        </div>
+        <div class="panel-body">
+          <form name="reg">
+            <div class="form-group">
+              <div class="col-md-6">
+                <label for="email">Firstname:</label>
+                <input type="text" name="fname" ng-model="registerForm.fname" class="form-control" required>
+                <span class="red" ng-show="reg.fname.$touched && reg.fname.$invalid ">* First name required</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-md-6">
+                <label for="pwd">Lastname:</label>
+                <input type="text" name="lname" ng-model="registerForm.lname" class="form-control" required>
+                <span class="red" ng-show="reg.lname.$touched && reg.lname.$invalid">* Last name required</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-md-12 pt">
+                <label for="pwd">Username:</label>
+                <input type="text" name="username" ng-model="registerForm.username" class="form-control" required>
+
+                <span class="red" ng-show="reg.username.$touched && reg.username.$invalid">* Username is required</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-md-12 pt">
+                <label for="pwd">Email:</label>
+                <input type="email" name="email" ng-model="registerForm.email" class="form-control" required>
+
+                <span class="red" ng-show="reg.email.$touched && reg.email.$invalid">* Email required</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-md-12 pt">
+                <label for="pwd">Mobile number:</label>
+                <input type="text" name="pnum" ng-model="registerForm.phnum" class="form-control" required>
+
+                <span class="red" ng-show="reg.pnum.$touched && reg.pnum.$invalid">* Phone number required</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-md-12 pt">
+                <label for="pwd">Password:</label>
+                <input type="password" name="pwd" ng-model="registerForm.pwd" class="form-control" required>
+
+                <span class="red" ng-show="reg.pwd.$touched && reg.pwd.$invalid">* password required</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-md-12 pt">
+                <label for="pwd">Confirm Password:</label>
+                <input type="password" name="cpwd" ng-model="registerForm.cpwd" compare-to="registerForm.pwd" class="form-control">
+                <span class="red" ng-show="reg.cpwd.$error.compareTo">  
+                 * Passwords don't match.  
+                  </span>
+
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-md-12">
+                <label></label>
+                <button type="submit" class="btn btn-signup btn-block" ng-click="register()" ng-disabled="reg.$invalid">Register</button>
+              </div>
+            </div>
+
+          </form>
+        </div>
+
+        <div class="ln"></div>
+
+        <div class="links">
+
+          <p style="text-align:center"> ALREADY HAVE AN ACCOUNT</p>
+          <a class="logn" href="" style="color:#1bbc9b;">
+            LOGIN ?</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>

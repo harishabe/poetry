@@ -1,0 +1,146 @@
+@import 'variable';
+
+body{
+         font-family: "Roboto", Verdana, sans-serif;
+}
+.red{
+  color:$red;
+}
+.navbar {
+        background-color: #1bbc9b;
+        color: white !important;
+        height: 73px;
+        border-radius:0px;
+        .container-fluid{       
+                margin-top:10px;
+               
+                .navbar-brand{
+                        color:white;
+                }
+                
+                .navbar-nav{
+                        li a{
+                        color:white !important;
+                        }
+                       
+                }
+                
+        }
+}
+
+///########################LOGIN#######################///
+
+.container{
+      .login-layout{
+            margin-left:27%;
+             -webkit-animation-delay: 0.1s; 
+                animation-delay: 0.1s;
+             .panel-heading{
+                        height:39px;
+                        background-color: #1bbc9b;
+                        text-align:center;
+                        //font-size:40px;
+                        color:white;
+                        .logo{
+                                        margin-top: -8px;
+                                        margin-left: 40%;
+                                        width: 35px;
+                                        height: 35px;
+                                        padding-top: 3px;
+                                        background-color: #eee;
+                                        border-radius: 115px;
+                                        border: 1px solid white;
+                                       
+                                 .fa{
+                                color:#1bbc9b;
+                                font-size:23px;
+                        }
+                        }
+                       
+             }
+            
+             .btn-signup{
+          background-color:  #1bbc9b;
+          color:white;
+                } 
+               .links{
+                    text-align:center;
+                    padding-top: 13px;   
+               } 
+               .lns{
+                       border:1px solid #eee;
+                       margin-top:2px;
+               }
+      }
+}
+
+
+///########################SIGNUP#######################///
+
+
+.signup{
+  @extend .container;   
+  .pt{
+          padding-top:14px;
+  }  
+  
+}
+
+//########################poetry#######################//
+.circle {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 500px;
+    margin: 0 .5em;
+    background-color: #ddd;
+    vertical-align: baseline;
+    border: 2px solid transparent;
+}
+.circle-success {
+    background-color: #27c24c;
+}
+.circle-lg {
+    width: 11px;
+    height: 11px;
+}
+.circle.text-left {
+    margin-left: 0;
+}
+
+
+
+
+//########################Animation#######################//
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.fadeIn {
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+}

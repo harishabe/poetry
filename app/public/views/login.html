@@ -1,0 +1,40 @@
+<section class="animated fadeIn">
+<div class="container">
+<div class="col-md-5 col-sm-5 col-xs-5 col-lg-5  login-layout"> 
+
+<div class="panel panel-default">
+<div class="panel-heading">
+  <div class="logo">
+<i class="fa fa-key"></i>
+  </div>
+
+</div>
+<div class="panel-body">  
+  <form name="login">
+  <div class="form-group">
+    <label for="email">Username:</label>
+    <input type="text" name="uname" class="form-control" ng-model="uname" required />
+    <span class="red" ng-show="login.uname.$touched && login.uname.$invalid">
+      * username required
+    </span>
+  </div>
+  <div class="form-group">
+    <label for="pwd">Password:</label>
+    <input type="password" ng-model="pwd" name="pwd" class="form-control" required />
+    <span class="red" ng-show="login.pwd.$touched && login.pwd.$invalid">
+      * password required
+    </span>
+  </div>
+  <div class="checkbox">
+    <label><input type="checkbox"> Forget Password?</label>
+  </div>
+  <button type="submit" class="btn btn-signup btn-block">Log In</button>
+</form>
+<div class="lns"></div>
+<div class="links"><a href="" style="color:#1bbc9b">CREATE AN ACCOUNT ?</a></div>
+</div>
+</div>
+    </div>
+
+</div>
+</section>

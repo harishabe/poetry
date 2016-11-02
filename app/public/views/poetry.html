@@ -1,0 +1,77 @@
+<div class="container">
+    <div class="col-md-9">
+        <div class="panel panel-default animated fadeIn" style="border-left: 12px solid #1bbc9b;" ng-repeat="data in peotry">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        
+                            <div class="col-md-4 col-sm-4 col-xs-4">
+                                <img class="img-circle" src="{{data.img}}" width="40" height="40">
+                            </div>
+
+                            <div class="col-md-4 col-sm-4 col-xs-4" style="margin-top:10px">
+                                {{data.title}}
+                            </div>
+                       
+                        <!--<div class="col-md-3">
+                            Posted By: {{data.postDate}}
+                        </div>-->
+
+                        <div class="col-md-4 col-sm-4 col-xs-4" style="margin-top:10px">
+                            Rating : {{data.rating}} <i class="fa fa-star-o" aria-hidden="true"></i> 
+                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body">
+                {{data.info}}
+            </div>
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="col-md-4 col-sm-4 col-xs-4">
+                            <a href="" class="txtColor" ng-click='count=count+1'><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Like {{count}}</a>
+                        </div>
+
+                        <div class="col-md-4 col-sm-4 col-xs-4 txtColor"><i class="fa fa-comment-o" aria-hidden="true"></i> Comment</div>
+
+
+                        <div class="col-md-4 col-sm-4 col-xs-4 txtColor"><i class="fa fa-share-square-o" aria-hidden="true"></i> 
+                        Share <i class="fa fa-facebook" aria-hidden="true"></i> <i class="fa fa-linkedin" aria-hidden="true"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3 col-sm-3 col-xs-3">
+        <div class="panel panel-default animated animated fadeIn ">
+            <input type="text" ng-model="name" class="form-control" placeholder="Search by Author" />
+            <div class="panel-heading panel-color" ng-repeat="a in author | filter:name">
+                <div style="background-color:white">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-2">
+                                <img class="img-circle" src="{{a.img}}" width="30" height="30">
+
+                            </div>
+
+                            <div class="col-md-8">
+                                    
+                                {{a.name}}
+                               
+                            </div>
+                            <div class="col-md-2">
+                                 <span class="circle circle-success circle-lg"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
