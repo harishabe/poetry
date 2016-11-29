@@ -1,5 +1,6 @@
 angular.module('poetry',[
     'ui.router',
     'ngAnimate',
-    'toaster'
+    'toaster',
+    'cfp.loadingBar'
 ]);

@@ -5,6 +5,8 @@ var passport = require('passport');
 
 var User = require('../models/user');
 
+
+
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   res.send('respond with a resource');
@@ -36,6 +38,7 @@ router.post('/register', function(req, res) {
 
 router.post('/login', function(req, res, next) {
   passport.authenticate('local', function(err, user, info) {
+   
     if (err) {
       return next(err);
     }
@@ -51,11 +54,25 @@ router.post('/login', function(req, res, next) {
         });
       }
       res.status(200).json({
+        data:user,
         status: 'Login successful!'
       });
     });
   })(req, res, next);
 });
+
+
+router.get('/api/:_id',function (req,res) {
+    User.getUserById(req.params._id,function (err,User) {
+        if(err)
+        {
+            throw err;
+        }
+        res.json(User);
+    });
+
+});
+
 
 
 module.exports = router;

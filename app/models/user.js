@@ -16,4 +16,8 @@ var User = new Schema({
 User.plugin(passportLocalMongoose);
 
 
-module.exports = mongoose.model('users', User);
+var users = module.exports = mongoose.model('users', User);
+
+module.exports.getUserById = function (id, callback) {
+    users.findById(id, callback);
+}

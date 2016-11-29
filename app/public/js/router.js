@@ -1,5 +1,5 @@
-angular.module('poetry').config(function($stateProvider,$urlRouterProvider) {
-    $urlRouterProvider.otherwise('/poetry');
+angular.module('poetry').config(function($stateProvider,$urlRouterProvider,$locationProvider) {
+   
     $stateProvider
        
         .state('poetry',{
@@ -7,29 +7,40 @@ angular.module('poetry').config(function($stateProvider,$urlRouterProvider) {
             views:{ 
                 'content':{
                     templateUrl:'views/poetry.html',
-                    controller:'poetryCtrl'
+                    controller:'poetryCtrl',
+                   
                 }
             },
             cache:false
 
         })
-         .state('dashboard',{
-            url:'/dashboard',
-            views:{ 
-                'content':{
-                    templateUrl:'views/dashboard.html',
-                    controller:'dashboardCtrl'
-                }
-            },
-            cache:false
+         
 
+        .state('dashboard', {
+            url: "/dashboard/:_id",
+            views: {
+               
+                'sideBar':{
+                        templateUrl:"views/sideBar.html",
+                        ///controller:"sideBarCtrl",
+                        
+                    },
+                'content': {
+                    templateUrl: 'views/dashboard.html',
+                    controller:'dashboardCtrl',
+                    
+                    }
+                },
+            cache: false
         })
+
         .state('signup',{
             url:'/signup',
             views:{ 
                 'content':{
                     templateUrl:'views/signup.html',
                    // controller:'signupCtrl'
+                   
                 }
             },
             cache:false
@@ -40,9 +51,13 @@ angular.module('poetry').config(function($stateProvider,$urlRouterProvider) {
             views:{
                 'content':{
                     templateUrl:'views/login.html',
-                    //controller:'loginCtrl'
+                    controller:'loginCtrl',
+                    
                 }
             },
             cache:false
         })
+
+    
+         $urlRouterProvider.otherwise('/poetry');
 });

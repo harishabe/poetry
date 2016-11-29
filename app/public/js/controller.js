@@ -1,3 +1,4 @@
+
 var app = angular.module('poetry');
 app.controller('poetryCtrl', function ($scope) {
     $scope.peotry = [{
@@ -69,7 +70,8 @@ app.controller('poetryCtrl', function ($scope) {
         {
             'name': 'fghfghfghfghfgh',
             'img': 'images/img1.jpg'
-        }, {
+        },
+        {
             'name': 'abcabcabcabc',
             'img': 'images/img1.jpg'
         },
@@ -83,44 +85,109 @@ app.controller('poetryCtrl', function ($scope) {
         }];
 
 })
-app.controller('regCtrl', ['$scope','$state', 'AuthService','toaster',function ($scope,$state,AuthService,toaster) {
- 
+app.controller('regCtrl', ['$scope', '$state', 'AuthService', 'toaster', function ($scope, $state, AuthService, toaster) {
+    $scope.register = function () {
+        //   var user={};
+        //   user.username= $scope.registerForm.username;
+        //   user.fname= $scope.registerForm.fname;
+        //   user.lname= $scope.registerForm.lname;
+        //   user.email= $scope.registerForm.email;
+        //   user.phnum= $scope.registerForm.phnum;
 
-         $scope.register = function () {
-         var user={};
-  user.username= $scope.registerForm.username;
-  user.fname= $scope.registerForm.fname;
-  user.lname= $scope.registerForm.lname;
-  user.email= $scope.registerForm.email;
-  user.phnum= $scope.registerForm.phnum;
-  console.log(user);
-      // initial values
-      $scope.error = false;
-      $scope.disabled = true;
+        //console.log(user);
+        // initial values
+        $scope.error = false;
+        $scope.disabled = true;
 
-      // call register from service
-      AuthService.register($scope.registerForm.username,$scope.registerForm.fname,$scope.registerForm.lname,$scope.registerForm.email,$scope.registerForm.phnum, $scope.registerForm.pwd)
-        // handle success
-        .then(function () {
-            
-       // toaster.success({title: "title", body:"Successfully Registered"});
-          toaster.pop('success', "Hi,"+$scope.registerForm.fname+" ", "Successfully Registered");
-          $state.go('login');
-          $scope.disabled = false;
-          $scope.registerForm = {};
-        })
-        // handle error
-        .catch(function () {
-          $scope.error = true;
-        toaster.pop('error', "Hi,"+$scope.registerForm.fname+ " ","Username Already exists", null, 'trustedHtml');
-      
-          $scope.errorMessage = "Something went wrong!";
-          $scope.disabled = false;
-          $scope.registerForm = {};
-        });
+        // call register from service
+        AuthService.register($scope.registerForm.username, $scope.registerForm.fname, $scope.registerForm.lname, $scope.registerForm.email, $scope.registerForm.phnum, $scope.registerForm.pwd)
+            // handle success
+            .then(function () {
+
+                // toaster.success({title: "title", body:"Successfully Registered"});
+                toaster.pop('success', "Hi," + $scope.registerForm.fname + " ", "Successfully Registered");
+                $state.go('login');
+                $scope.disabled = false;
+                $scope.registerForm = " ";
+            })
+            // handle error
+            .catch(function () {
+                $scope.error = true;
+
+                //$scope.registerForm = {};
+                toaster.pop('error', "Username Already exists", null, 'trustedHtml');
+
+                $scope.errorMessage = "Something went wrong!";
+                $scope.disabled = false;
+            });
 
     };
 
-
-
 }])
+
+app.controller('loginCtrl',
+    ['$scope', '$state', 'AuthService', 'toaster', 'cfpLoadingBar',
+        function ($scope, $state, AuthService, toaster, cfpLoadingBar) {
+
+            $scope.Userlogin = function () {
+                // initial values
+                $scope.error = false;
+                $scope.disabled = true;
+              
+            
+                // call login from service
+                    AuthService.login($scope.loginForm.username, $scope.loginForm.password)
+                    // handle success
+                    .then(function (d) {
+                    
+                        cfpLoadingBar.complete();
+                        toaster.pop('success', "Welcome To Poetry");
+
+                        $state.go('dashboard');
+                        $scope.disabled = false;
+                        $scope.loginForm = {};
+                    })
+                    // handle error
+                    .catch(function () {
+                        cfpLoadingBar.start();
+                        $scope.error = true;
+                        // $scope.errorMessage = "Invalid username and/or password";
+                        toaster.pop('error', '', "Invalid username and password", null, 'trustedHtml');
+
+                        $scope.disabled = false;
+                        $scope.loginForm = {};
+                    });
+
+
+            };
+
+        }])
+
+app.controller('dashboardCtrl', ['$scope', 'toaster', 'apiService', function ($scope, toaster, apiService) {
+
+    $scope.textData = [];
+
+
+    $scope.changeText = function () {
+
+        if (!$scope.text && !$scope.title) {
+            // alert('hi');
+            toaster.pop('error', '', "Please fill the fileds", null, 'trustedHtml');
+
+            // toaster.pop('error','',"Please Fill the field", null, 'trustedHtml');
+
+        } else {
+
+            $scope.textData.push({ 'title': $scope.title, 'Data': $scope.text });
+            console.log($scope.textData);
+        }
+    }
+
+    //    $scope.limit = 3;
+
+    //     $scope.loadMore = function() {
+    //       $scope.increamented =  $scope.limit + 3;
+    //        $scope.limit = $scope.increamented > scope.textData.length ? scope.textData.length : $scope.increamented;
+    //     };
+}]);
+
