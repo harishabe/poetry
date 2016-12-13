@@ -1,8 +1,8 @@
-app.factory('AuthService',['$q', '$timeout', '$http',function($q, $timeout, $http) {
+app.factory('AuthService',['$q', '$timeout', '$http',function($q, $timeout, $http,$scope) {
     
     var user = null;
     var resJSON;
-
+   
     return ({
        isLoggedIn: isLoggedIn,
       // getUserStatus: getUserStatus,
@@ -25,31 +25,15 @@ app.factory('AuthService',['$q', '$timeout', '$http',function($q, $timeout, $htt
       var deferred = $q.defer();
 
       // send a post request to the server
-      $http.post('/users/login',
+     return  $http.post('/users/login',
         {username: username, password: password})
         // handle success
-        .success(function (data, status) {
-           resJSON=data;
-          if(status === 200 && data.status){
-            user = true;
-            deferred.resolve();
-          } else {
-            user = false;
-            deferred.reject();
-          }
-        })
-        // handle error
-        .error(function (data) {
-          user = false;
-          deferred.reject();
-        });
         
       // return promise object
-      return deferred.promise;
+      //return deferred.promise;
       
 
     }
-
 
 
      function register(username,email,phnum,fname,lname, password) {

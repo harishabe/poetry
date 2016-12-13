@@ -22,7 +22,7 @@ var config = require('./config/config');
 // user schema/model
 var User = require('./models/user');
 
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 8081;
 var app = express();
 
 // view engine setup

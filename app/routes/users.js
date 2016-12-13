@@ -36,9 +36,29 @@ router.post('/register', function(req, res) {
 });
 
 
+// router.post('/login',function(req,res){
+// var username=req.body.username;
+// var password=req.body.password;
+// console.log(username,password);
+// User.findOne({username:username,password:password},function(err,user){
+// console.log(err,user);
+// if(err){
+//   console.log(err);
+//   return res.status(500).send();
+// }
+// if(!user){
+//   console.log('invalid credentials');
+//   return res.status(404).send();
+// }
+// return res.status(200).send();
+// })
+// })
+
+
+
 router.post('/login', function(req, res, next) {
   passport.authenticate('local', function(err, user, info) {
-   
+    console.log(user); 
     if (err) {
       return next(err);
     }
@@ -62,6 +82,7 @@ router.post('/login', function(req, res, next) {
 });
 
 
+
 router.get('/api/:_id',function (req,res) {
     User.getUserById(req.params._id,function (err,User) {
         if(err)
@@ -73,6 +94,19 @@ router.get('/api/:_id',function (req,res) {
 
 });
 
+router.post('/story',function(req,res,next){
+      var story={};
+      story.title=req.body.title;
+      story.data=req.body.data;
+      User.saveStory(story,function(err,story){
+        console.log(story);
+        if(err){
+          throw err;
+        }else{
+          res.json(story);
+        }
+      })
+})
 
 
 module.exports = router;

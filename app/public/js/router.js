@@ -17,11 +17,12 @@ angular.module('poetry').config(function($stateProvider,$urlRouterProvider,$loca
          
 
         .state('dashboard', {
-            url: "/dashboard/:_id",
+            url: "/dashboard/:ID",
             views: {
                
                 'sideBar':{
                         templateUrl:"views/sideBar.html",
+                         controller:'dashboardCtrl',
                         ///controller:"sideBarCtrl",
                         
                     },

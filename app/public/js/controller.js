@@ -1,7 +1,7 @@
-
 var app = angular.module('poetry');
 app.controller('poetryCtrl', function ($scope) {
-    $scope.peotry = [{
+    $scope.peotry = [
+        {
         'img': 'images/img1.jpg',
         'postDate': '12-3-2016',
         'rating': '',
@@ -10,7 +10,7 @@ app.controller('poetryCtrl', function ($scope) {
         'like': '12',
         'comments': '4',
         'share': ''
-    },
+        },
         {
             'img': 'images/img1.jpg',
             'postDate': '12-3-2016',
@@ -41,19 +41,13 @@ app.controller('poetryCtrl', function ($scope) {
             'like': '12',
             'comments': '4',
             'share': ''
-        }];
+        }
+        ];
 
-    $scope.author = [{
+    $scope.author = [
+        {
         'name': 'xyzxyzxyzxyz',
         'img': 'images/img1.jpg'
-    },
-        {
-            'name': 'abcabcabcabc',
-            'img': 'images/img1.jpg'
-        },
-        {
-            'name': 'fghfghfghfghfgh',
-            'img': 'images/img1.jpg'
         },
         {
             'name': 'abcabcabcabc',
@@ -80,10 +74,18 @@ app.controller('poetryCtrl', function ($scope) {
             'img': 'images/img1.jpg'
         },
         {
+            'name': 'abcabcabcabc',
+            'img': 'images/img1.jpg'
+        },
+        {
             'name': 'fghfghfghfghfgh',
             'img': 'images/img1.jpg'
-        }];
-
+        },
+        {
+            'name': 'fghfghfghfghfgh',
+            'img': 'images/img1.jpg'
+        }
+        ];
 })
 app.controller('regCtrl', ['$scope', '$state', 'AuthService', 'toaster', function ($scope, $state, AuthService, toaster) {
     $scope.register = function () {
@@ -93,17 +95,14 @@ app.controller('regCtrl', ['$scope', '$state', 'AuthService', 'toaster', functio
         //   user.lname= $scope.registerForm.lname;
         //   user.email= $scope.registerForm.email;
         //   user.phnum= $scope.registerForm.phnum;
-
         //console.log(user);
         // initial values
         $scope.error = false;
         $scope.disabled = true;
-
         // call register from service
         AuthService.register($scope.registerForm.username, $scope.registerForm.fname, $scope.registerForm.lname, $scope.registerForm.email, $scope.registerForm.phnum, $scope.registerForm.pwd)
             // handle success
             .then(function () {
-
                 // toaster.success({title: "title", body:"Successfully Registered"});
                 toaster.pop('success', "Hi," + $scope.registerForm.fname + " ", "Successfully Registered");
                 $state.go('login');
@@ -113,37 +112,29 @@ app.controller('regCtrl', ['$scope', '$state', 'AuthService', 'toaster', functio
             // handle error
             .catch(function () {
                 $scope.error = true;
-
                 //$scope.registerForm = {};
                 toaster.pop('error', "Username Already exists", null, 'trustedHtml');
-
                 $scope.errorMessage = "Something went wrong!";
                 $scope.disabled = false;
             });
-
     };
-
 }])
-
 app.controller('loginCtrl',
-    ['$scope', '$state', 'AuthService', 'toaster', 'cfpLoadingBar',
-        function ($scope, $state, AuthService, toaster, cfpLoadingBar) {
-
+    ['$scope', '$http', '$state', 'AuthService', 'toaster', 'cfpLoadingBar',
+        function ($scope, $http, $state, AuthService, toaster, cfpLoadingBar) {
             $scope.Userlogin = function () {
                 // initial values
                 $scope.error = false;
                 $scope.disabled = true;
-              
-            
                 // call login from service
-                    AuthService.login($scope.loginForm.username, $scope.loginForm.password)
+                AuthService.login($scope.loginForm.username, $scope.loginForm.password)
                     // handle success
-                    .then(function (d) {
-                    
+                    .then(function (response) {
+                        console.log(response.data.data._id);
+                        localStorage.setItem("id", response.data.data._id);
                         cfpLoadingBar.complete();
                         toaster.pop('success', "Welcome To Poetry");
-
-                        $state.go('dashboard');
+                        $state.go('dashboard', { ID: response.data.data._id });
                         $scope.disabled = false;
                         $scope.loginForm = {};
                     })
@@ -157,34 +148,26 @@ app.controller('loginCtrl',
                         $scope.disabled = false;
                         $scope.loginForm = {};
                     });
-
-
             };
-
         }])
-
-app.controller('dashboardCtrl', ['$scope', 'toaster', 'apiService', function ($scope, toaster, apiService) {
-
-    $scope.textData = [];
-
-
-    $scope.changeText = function () {
-
-        if (!$scope.text && !$scope.title) {
-            // alert('hi');
+app.controller('dashboardCtrl', ['$scope', '$http', 'toaster', 'AuthService', 'apiService', function ($scope, $http, toaster, AuthService, apiService) {
+    $scope.story = [];
+    $scope.changeText = function (){
+        if (!$scope.story.text && !$scope.story.title){
             toaster.pop('error', '', "Please fill the fileds", null, 'trustedHtml');
-
             // toaster.pop('error','',"Please Fill the field", null, 'trustedHtml');
-
         } else {
-
-            $scope.textData.push({ 'title': $scope.title, 'Data': $scope.text });
-            console.log($scope.textData);
+            //  $scope.story.push({ 'title': $scope.title, 'data': $scope.text });
+            $http.post('/users/story', $scope.story).success(function (response) {
+                console.log($scope.story);
+            });
         }
     }
-
+    var id = localStorage.id;
+    $http.get('/users/api/' + id).success(function (response) {
+        $scope.usersDetails = response;
+    });
     //    $scope.limit = 3;
-
     //     $scope.loadMore = function() {
     //       $scope.increamented =  $scope.limit + 3;
     //        $scope.limit = $scope.increamented > scope.textData.length ? scope.textData.length : $scope.increamented;
