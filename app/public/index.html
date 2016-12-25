@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="poetry">
+
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-    <link rel="stylesheet" href="lib/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="lib/css/bootstrap.min.css" />
     <link rel="stylesheet" href="lib/fonts/css/font-awesome.min.css">
-    <link rel="stylesheet" href="lib/css/toaster.min.css"/>
+    <link rel="stylesheet" href="lib/css/toaster.min.css" />
     <link rel="stylesheet" href="lib/css/loading-bar.min.css" />
-    <link rel="stylesheet" href="css/css/style.css"/>
+    <link rel="stylesheet" href="css/css/style.css" />
 
 </head>
+
 <body>
 
 
- <div ui-view="content"></div>
- <div ui-view="sideBar"></div> 
-<toaster-container style="margin-top:63px" toaster-options="{'time-out': 4000, 'close-button':true, 'animation-class': 'toast-top-right'}"></toaster-container>
+    <div ui-view="content"></div>
+    <div ui-view="sideBar"></div>
+    <toaster-container style="margin-top:63px" toaster-options="{'time-out': 4000, 'close-button':true, 'animation-class': 'toast-top-right'}"></toaster-container>
 
     <script src="lib/js/angular.min.js"></script>
     <script src="lib/js/angular-ui-router.js"></script>
@@ -28,7 +30,7 @@
     <script src="js/directive.js"></script>
     <script src="js/factory.js"></script>
     <script src="js/services.js"></script>
-    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>-->
 
 </body>
+
 </html>

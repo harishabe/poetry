@@ -2,14 +2,14 @@ var app = angular.module('poetry');
 app.controller('poetryCtrl', function ($scope) {
     $scope.peotry = [
         {
-        'img': 'images/img1.jpg',
-        'postDate': '12-3-2016',
-        'rating': '',
-        'title': 'ಬಿಂಬ',
-        'info': 'ಪದೇ ಪದೇ ಹೋದ  ಹೋಟೆಲಿನಲಿ ಬಟ್ಟೆಯಂಗಡಿಯಲಿ ರಸ್ತೆಬದಿಯಲಿ ನಮ್ಮೂರ ದಾರಿಯಲಿ ಹಳೆಯ ಪತ್ರಗಳಲಿ ನಿನ್ನದೇ ಪಾತ್ರಗಳಲಿ ನೀನಿದ್ದು ಬಂದ ಊರುಗಳಲಿ ಪಕ್ಕ ಸರಿಯುವ ಬಸ್ಸು ಕಾರುಗಳಲ್ಲಿ ಎಲ್ಲೋ ಸಿಗದ ನಿನ್ನನ್ನು ನೋಡುವೆನು ಮತ್ತೊಬ್ಬಳ ಕಣ್ಣಿನಲಿ !',
-        'like': '12',
-        'comments': '4',
-        'share': ''
+            'img': 'images/img1.jpg',
+            'postDate': '12-3-2016',
+            'rating': '',
+            'title': 'ಬಿಂಬ',
+            'info': 'ಪದೇ ಪದೇ ಹೋದ  ಹೋಟೆಲಿನಲಿ ಬಟ್ಟೆಯಂಗಡಿಯಲಿ ರಸ್ತೆಬದಿಯಲಿ ನಮ್ಮೂರ ದಾರಿಯಲಿ ಹಳೆಯ ಪತ್ರಗಳಲಿ ನಿನ್ನದೇ ಪಾತ್ರಗಳಲಿ ನೀನಿದ್ದು ಬಂದ ಊರುಗಳಲಿ ಪಕ್ಕ ಸರಿಯುವ ಬಸ್ಸು ಕಾರುಗಳಲ್ಲಿ ಎಲ್ಲೋ ಸಿಗದ ನಿನ್ನನ್ನು ನೋಡುವೆನು ಮತ್ತೊಬ್ಬಳ ಕಣ್ಣಿನಲಿ !',
+            'like': '12',
+            'comments': '4',
+            'share': ''
         },
         {
             'img': 'images/img1.jpg',
@@ -42,12 +42,12 @@ app.controller('poetryCtrl', function ($scope) {
             'comments': '4',
             'share': ''
         }
-        ];
+    ];
 
     $scope.author = [
         {
-        'name': 'xyzxyzxyzxyz',
-        'img': 'images/img1.jpg'
+            'name': 'xyzxyzxyzxyz',
+            'img': 'images/img1.jpg'
         },
         {
             'name': 'abcabcabcabc',
@@ -85,25 +85,15 @@ app.controller('poetryCtrl', function ($scope) {
             'name': 'fghfghfghfghfgh',
             'img': 'images/img1.jpg'
         }
-        ];
+    ];
 })
 app.controller('regCtrl', ['$scope', '$state', 'AuthService', 'toaster', function ($scope, $state, AuthService, toaster) {
     $scope.register = function () {
-        //   var user={};
-        //   user.username= $scope.registerForm.username;
-        //   user.fname= $scope.registerForm.fname;
-        //   user.lname= $scope.registerForm.lname;
-        //   user.email= $scope.registerForm.email;
-        //   user.phnum= $scope.registerForm.phnum;
-        //console.log(user);
-        // initial values
         $scope.error = false;
         $scope.disabled = true;
-        // call register from service
         AuthService.register($scope.registerForm.username, $scope.registerForm.fname, $scope.registerForm.lname, $scope.registerForm.email, $scope.registerForm.phnum, $scope.registerForm.pwd)
             // handle success
             .then(function () {
-                // toaster.success({title: "title", body:"Successfully Registered"});
                 toaster.pop('success', "Hi," + $scope.registerForm.fname + " ", "Successfully Registered");
                 $state.go('login');
                 $scope.disabled = false;
@@ -112,7 +102,6 @@ app.controller('regCtrl', ['$scope', '$state', 'AuthService', 'toaster', functio
             // handle error
             .catch(function () {
                 $scope.error = true;
-                //$scope.registerForm = {};
                 toaster.pop('error', "Username Already exists", null, 'trustedHtml');
                 $scope.errorMessage = "Something went wrong!";
                 $scope.disabled = false;
@@ -150,27 +139,27 @@ app.controller('loginCtrl',
                     });
             };
         }])
-app.controller('dashboardCtrl', ['$scope', '$http', 'toaster', 'AuthService', 'apiService', function ($scope, $http, toaster, AuthService, apiService) {
-    $scope.story = [];
-    $scope.changeText = function (){
-        if (!$scope.story.text && !$scope.story.title){
+app.controller('dashboardCtrl', ['$scope','$state', '$http', 'toaster', 'AuthService', 'apiService', function ($scope,$state,$http, toaster, AuthService, apiService) {
+    $scope.story = {};
+    $scope.logOut=function(){
+        $state.go('poetry');
+    }
+    $scope.changeText = function () {
+        $scope.story.id = localStorage.id;
+        if (!$scope.story.text && !$scope.story.title) {
             toaster.pop('error', '', "Please fill the fileds", null, 'trustedHtml');
-            // toaster.pop('error','',"Please Fill the field", null, 'trustedHtml');
         } else {
-            //  $scope.story.push({ 'title': $scope.title, 'data': $scope.text });
-            $http.post('/users/story', $scope.story).success(function (response) {
-                console.log($scope.story);
-            });
+                apiService.getUserData('/users/api/story',$scope.story,function(response){
+                alert('Api service');
+                console.log(response);
+            })
         }
+
     }
     var id = localStorage.id;
     $http.get('/users/api/' + id).success(function (response) {
         $scope.usersDetails = response;
+        console.log( $scope.usersDetails);
     });
-    //    $scope.limit = 3;
-    //     $scope.loadMore = function() {
-    //       $scope.increamented =  $scope.limit + 3;
-    //        $scope.limit = $scope.increamented > scope.textData.length ? scope.textData.length : $scope.increamented;
-    //     };
 }]);
 
