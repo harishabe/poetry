@@ -1,46 +1,18 @@
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" ui-sref="poetry">POETRY</a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a ui-sref="signup" ><i class="fa fa-user"></i> Sign Up</a></li>
-        <li><a ui-sref="login"><i class="fa fa-sign-in"></i> Login</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
-  
-<div class="container">
-    <div class="col-md-9">
-        <div class="panel panel-default animated fadeIn" style="border-left: 12px solid #1bbc9b;" ng-repeat="data in peotry">
+<top-Bar></top-Bar>
+<div class="container" id="top" ng-init="showData123()" ng-init="limit=4">
+    <div class="col-md-9" style="margin-top:100px">
+        <div class="panel panel-default animated fadeIn" style="border-left: 12px solid #1bbc9b;" ng-repeat="d in usersDetails | limitTo:limit as loadLimit">
             <div class="panel-heading">
                 <div class="row">
                     <div class="col-md-12 col-sm-12 col-xs-12">
-                        
-                            <div class="col-md-4 col-sm-4 col-xs-4">
-                                <img class="img-circle" src="{{data.img}}" width="40" height="40">
-                            </div>
-
-                            <div class="col-md-4 col-sm-4 col-xs-4" style="margin-top:10px">
-                                {{data.title}}
-                            </div>
-                       
-                        <!--<div class="col-md-3">
-                            Posted By: {{data.postDate}}
-                        </div>-->
-
+                        <div class="col-md-4 col-sm-4 col-xs-4">
+                            <img class="img-circle" src="images/img1.jpg" width="40" height="40">
+                        </div>
                         <div class="col-md-4 col-sm-4 col-xs-4" style="margin-top:10px">
-                            Rating : {{data.rating}} <i class="fa fa-star-o" aria-hidden="true"></i> 
+                            {{d.title}}
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-4" style="margin-top:10px">
+                            Rating : {{data.rating}} <i class="fa fa-star-o" aria-hidden="true"></i>
                             <i class="fa fa-star-o" aria-hidden="true"></i>
                             <i class="fa fa-star-o" aria-hidden="true"></i>
                             <i class="fa fa-star-o" aria-hidden="true"></i>
@@ -50,7 +22,9 @@
                 </div>
             </div>
             <div class="panel-body">
-                {{data.info}}
+                <div style="white-space: pre;text-align:center">
+                    <show-more text="d.data" limit="300"> </show-more>
+                </div>
             </div>
             <div class="panel-footer">
                 <div class="row">
@@ -58,37 +32,38 @@
                         <div class="col-md-4 col-sm-4 col-xs-4">
                             <a href="" class="txtColor" ng-click='count=count+1'><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Like {{count}}</a>
                         </div>
-
                         <div class="col-md-4 col-sm-4 col-xs-4 txtColor"><i class="fa fa-comment-o" aria-hidden="true"></i> Comment</div>
-
-
-                        <div class="col-md-4 col-sm-4 col-xs-4 txtColor"><i class="fa fa-share-square-o" aria-hidden="true"></i> 
-                        Share <i class="fa fa-facebook" aria-hidden="true"></i> <i class="fa fa-linkedin" aria-hidden="true"></i></div>
+                        <div class="col-md-4 col-sm-4 col-xs-4 txtColor"><i class="fa fa-share-square-o" aria-hidden="true"></i> Share <i class="fa fa-facebook" aria-hidden="true"></i> <i class="fa fa-linkedin" aria-hidden="true"></i></div>
                     </div>
                 </div>
             </div>
+            <div ng-if="loadLimit.length == 0">
+                <strong>No items found !</strong>
+            </div>
         </div>
+        <div>
+            <button class="btn btn-default btn-block loadMore" ng-hide="usersDetails==undefined || loadLimit.length == 0 || loadLimit.length >= usersDetails.length" ng-click="limit=limit+4">Load More</button>
+        </div>
+        <button class="btn btn-success" ng-click="goTop()">Top</button>
+        <button type="button" class="btn btn-success btn-circle btn-lg">
+            <i class="fa fa-angle-up" aria-hidden="true"></i></button>
     </div>
 
-    <div class="col-md-3 col-sm-3 col-xs-3">
+    <div class="col-md-3 col-sm-12 col-xs-12" style="margin-top:100px" ng-init="getAuthorList()">
         <div class="panel panel-default animated animated fadeIn ">
             <input type="text" ng-model="name" class="form-control" placeholder="Search by Author" />
-            <div class="panel-heading panel-color" ng-repeat="a in author | filter:name">
-                <div style="background-color:white">
+            <div class="panel-heading panel-color" ng-repeat="a in user | filter:name|orderBy:'email'">
+                <div style="background-color:white col-sm-8 col-xs-8">
                     <div class="row">
-                        <div class="col-md-12">
-                            <div class="col-md-2">
-                                <img class="img-circle" src="{{a.img}}" width="30" height="30">
-
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="col-md-2 col-sm-2 col-xs-2">
+                                <img class="img-circle" src="images/img1.jpg" width="30" height="30">
                             </div>
-
-                            <div class="col-md-8">
-                                    
-                                {{a.name}}
-                               
+                            <div class="col-md-8 col-sm-8 col-xs-8">
+                                {{a.email}}
                             </div>
-                            <div class="col-md-2">
-                                 <span class="circle circle-success circle-lg"></span>
+                            <div class="col-md-2 col-sm-2 col-xs-2">
+                                <span class="circle circle-success circle-lg"></span>
                             </div>
                         </div>
                     </div>

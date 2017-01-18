@@ -1,116 +1,64 @@
 var app = angular.module('poetry');
-app.controller('poetryCtrl', function ($scope) {
-    $scope.peotry = [
-        {
-            'img': 'images/img1.jpg',
-            'postDate': '12-3-2016',
-            'rating': '',
-            'title': 'ಬಿಂಬ',
-            'info': 'ಪದೇ ಪದೇ ಹೋದ  ಹೋಟೆಲಿನಲಿ ಬಟ್ಟೆಯಂಗಡಿಯಲಿ ರಸ್ತೆಬದಿಯಲಿ ನಮ್ಮೂರ ದಾರಿಯಲಿ ಹಳೆಯ ಪತ್ರಗಳಲಿ ನಿನ್ನದೇ ಪಾತ್ರಗಳಲಿ ನೀನಿದ್ದು ಬಂದ ಊರುಗಳಲಿ ಪಕ್ಕ ಸರಿಯುವ ಬಸ್ಸು ಕಾರುಗಳಲ್ಲಿ ಎಲ್ಲೋ ಸಿಗದ ನಿನ್ನನ್ನು ನೋಡುವೆನು ಮತ್ತೊಬ್ಬಳ ಕಣ್ಣಿನಲಿ !',
-            'like': '12',
-            'comments': '4',
-            'share': ''
-        },
-        {
-            'img': 'images/img1.jpg',
-            'postDate': '12-3-2016',
-            'rating': '',
-            'title': 'ಸ್ವರ್ಗವಂತೆ ಬೆಂಗಳೂರು ',
-            'info': 'ಸ್ವರ್ಗದಲ್ಲಿ ಇಂದ್ರ - ದೇವತೆಗಳ ಆಡಳಿತ ಇಲ್ಲೇನು ಕಮ್ಮಿ ಮೇಯರ್- ಮಂತ್ರಿಗಳ ದುರಾಡಳಿತ ಕಣ್ಣಿಗೆ ಬಿದ್ದುದಿಲ್ಲ ಸ್ವರ್ಗದಲ್ಲಿ  ಶ್ರೀಸಾಮಾನ್ಯ ಬರಿಯ ರಂಭಾ ಮೇನಕೆ ದೇವಗಣ ಇಲ್ಲಿಯೂ ಹಾಗೆಯೇ,  ಕಾಣುವುದಿಲ್ಲ ಜನ ಸಾಮಾನ್ಯ ಕಾಣಬೇಕೆಂದರೆ ಇರಲೇಬೇಕು ಕೈತುಂಬಾ ಹಣ , ಇಲ್ಲಾ ಬಣ್ಣ ಹಸಿವಿಲ್ಲವಂತೆ ಅಲ್ಲಿ , ಬಾಯಾರಿಕೆಗಳಿಲ್ಲ ಆರದ ಸರೋವರಗಳಿಂದ ಇಲ್ಲಿಯೂ ಬಾಯಾರಿಕೆ ಕಮ್ಮಿ ಬಾರ್ ಅಂಡ್ ರೆಸ್ಟೋರಂಟ್ಸ್ ಗಳಿಂದ ಇಂದ್ರನಿಗೂ ಭಯವಂತೆ ಅಲ್ಲಿ ರಕ್ಕಸರ ದಾಳಿಗೆ , ಸ್ವರ್ಗ ಕೈತಪ್ಪಿದರೆ ? ಇಲ್ಲಿಯೂ  ಆಗೆಯೇ ನಿದ್ರೆಯಿಲ್ಲ ಮಂತ್ರಿಗೆ ಖುರ್ಚಿ ಕಳಚಿಬಿದ್ದರೆ ? ಕ್ಷೀರ ಸಾಗರಗಳಂತೆ ? ಬಿಳಿಮೋಡಗಳಂತೆ ! ಇಲ್ಲೂ  ಉಳಿದಿಹವು ಒಂದೆರಡು ಕೆರೆಗಳು ಮೋಡಗಳಂತೆ ಒಂದರ ಹಿಂದೆ ಒಂದರಂತೆ ಲಕ್ಷ ವಾಹನಗಳು ಸಮಯ ಚಲಿಸುವುದಿಲ್ಲವೇನೋ ಅಲ್ಲಿ ಸುಖದ ಅಮಲಿನಲ್ಲಿ ಇಲ್ಲಿಯೂ , ಸಮಯ ಚಲಿಸುವುದಿಲ್ಲ ಕಿಕ್ಕಿರಿದ ರಸ್ತೆಗಳಲ್ಲಿ ನಿನ್ನಂತೆಯೇ ಅಲ್ಲವೇ ಬೆಂಗಳೂರು ಎಲ್ಲರನ್ನೂ ಕರೆವುದಿಲ್ಲಿಗೆ ಕೈಬೀಸಿ ಸುಖವ ತೋರಿಸಿ ಸ್ವರ್ಗವೆಂದರದು ಸ್ವರ್ಗ,  ಇಲ್ಲವೆಂದರೆ ಇಲ್ಲ ಎಲ್ಲವೂ ನಿನ್ನಿಷ್ಟದಂತೆ !',
-            'like': '12',
-            'comments': '4',
-            'share': ''
-        },
-        {
-            'img': 'images/img1.jpg',
-            'postDate': '12-3-2016',
-            'rating': '',
-            'title': 'Bimba',
-            'info': 'ಪದೇ ಪದೇ ಹೋದ  ಹೋಟೆಲಿನಲಿ ಬಟ್ಟೆಯಂಗಡಿಯಲಿ ರಸ್ತೆಬದಿಯಲಿ ನಮ್ಮೂರ ದಾರಿಯಲಿ ಹಳೆಯ ಪತ್ರಗಳಲಿ ನಿನ್ನದೇ ಪಾತ್ರಗಳಲಿ ನೀನಿದ್ದು ಬಂದ ಊರುಗಳಲಿ ಪಕ್ಕ ಸರಿಯುವ ಬಸ್ಸು ಕಾರುಗಳಲ್ಲಿ ಎಲ್ಲೋ ಸಿಗದ ನಿನ್ನನ್ನು ನೋಡುವೆನು ಮತ್ತೊಬ್ಬಳ ಕಣ್ಣಿನಲಿ !',
-            'like': '12',
-            'comments': '4',
-            'share': ''
-        },
-        {
-            'img': 'images/img1.jpg',
-            'postDate': '12-3-2016',
-            'rating': '',
-            'title': 'Bimba',
-            'info': 'ಸ್ವರ್ಗದಲ್ಲಿ ಇಂದ್ರ - ದೇವತೆಗಳ ಆಡಳಿತ ಇಲ್ಲೇನು ಕಮ್ಮಿ ಮೇಯರ್- ಮಂತ್ರಿಗಳ ದುರಾಡಳಿತ ಕಣ್ಣಿಗೆ ಬಿದ್ದುದಿಲ್ಲ ಸ್ವರ್ಗದಲ್ಲಿ  ಶ್ರೀಸಾಮಾನ್ಯ ಬರಿಯ ರಂಭಾ ಮೇನಕೆ ದೇವಗಣ ಇಲ್ಲಿಯೂ ಹಾಗೆಯೇ,  ಕಾಣುವುದಿಲ್ಲ ಜನ ಸಾಮಾನ್ಯ ಕಾಣಬೇಕೆಂದರೆ ಇರಲೇಬೇಕು ಕೈತುಂಬಾ ಹಣ , ಇಲ್ಲಾ ಬಣ್ಣ ಹಸಿವಿಲ್ಲವಂತೆ ಅಲ್ಲಿ , ಬಾಯಾರಿಕೆಗಳಿಲ್ಲ ಆರದ ಸರೋವರಗಳಿಂದ ಇಲ್ಲಿಯೂ ಬಾಯಾರಿಕೆ ಕಮ್ಮಿ ಬಾರ್ ಅಂಡ್ ರೆಸ್ಟೋರಂಟ್ಸ್ ಗಳಿಂದ ಇಂದ್ರನಿಗೂ ಭಯವಂತೆ ಅಲ್ಲಿ ರಕ್ಕಸರ ದಾಳಿಗೆ , ಸ್ವರ್ಗ ಕೈತಪ್ಪಿದರೆ ? ಇಲ್ಲಿಯೂ  ಆಗೆಯೇ ನಿದ್ರೆಯಿಲ್ಲ ಮಂತ್ರಿಗೆ ಖುರ್ಚಿ ಕಳಚಿಬಿದ್ದರೆ ? ಕ್ಷೀರ ಸಾಗರಗಳಂತೆ ? ಬಿಳಿಮೋಡಗಳಂತೆ ! ಇಲ್ಲೂ  ಉಳಿದಿಹವು ಒಂದೆರಡು ಕೆರೆಗಳು ಮೋಡಗಳಂತೆ ಒಂದರ ಹಿಂದೆ ಒಂದರಂತೆ ಲಕ್ಷ ವಾಹನಗಳು ಸಮಯ ಚಲಿಸುವುದಿಲ್ಲವೇನೋ ಅಲ್ಲಿ ಸುಖದ ಅಮಲಿನಲ್ಲಿ ಇಲ್ಲಿಯೂ , ಸಮಯ ಚಲಿಸುವುದಿಲ್ಲ ಕಿಕ್ಕಿರಿದ ರಸ್ತೆಗಳಲ್ಲಿ ನಿನ್ನಂತೆಯೇ ಅಲ್ಲವೇ ಬೆಂಗಳೂರು ಎಲ್ಲರನ್ನೂ ಕರೆವುದಿಲ್ಲಿಗೆ ಕೈಬೀಸಿ ಸುಖವ ತೋರಿಸಿ ಸ್ವರ್ಗವೆಂದರದು ಸ್ವರ್ಗ,  ಇಲ್ಲವೆಂದರೆ ಇಲ್ಲ ಎಲ್ಲವೂ ನಿನ್ನಿಷ್ಟದಂತೆ !',
+app.controller('poetryCtrl',
+    ['$scope', '$state', '$http', 'AuthService', 'apiService', '$location', '$anchorScroll',
+        function ($scope, $state, $http, AuthService, apiService, $location, $anchorScroll) {
+            $scope.lDatas = '';
+            $scope.gotoBottom = function (scrollLocation) {
+                $location.hash(scrollLocation);
+                $anchorScroll();
+            };
 
-            'like': '12',
-            'comments': '4',
-            'share': ''
-        }
-    ];
+            $scope.showData123 = function () {
+                apiService.getStoryData('/users/api/getStory', function (response) {
+                    $scope.usersDetails = response.data;
+                    $scope.lDatas = response.data;
+                })
+            }
 
-    $scope.author = [
-        {
-            'name': 'xyzxyzxyzxyz',
-            'img': 'images/img1.jpg'
-        },
-        {
-            'name': 'abcabcabcabc',
-            'img': 'images/img1.jpg'
-        },
-        {
-            'name': 'fghfghfghfghfgh',
-            'img': 'images/img1.jpg'
-        },
-        {
-            'name': 'abcabcabcabc',
-            'img': 'images/img1.jpg'
-        },
-        {
-            'name': 'fghfghfghfghfgh',
-            'img': 'images/img1.jpg'
-        },
-        {
-            'name': 'abcabcabcabc',
-            'img': 'images/img1.jpg'
-        },
-        {
-            'name': 'fghfghfghfghfgh',
-            'img': 'images/img1.jpg'
-        },
-        {
-            'name': 'abcabcabcabc',
-            'img': 'images/img1.jpg'
-        },
-        {
-            'name': 'fghfghfghfghfgh',
-            'img': 'images/img1.jpg'
-        },
-        {
-            'name': 'fghfghfghfghfgh',
-            'img': 'images/img1.jpg'
-        }
-    ];
-})
-app.controller('regCtrl', ['$scope', '$state', 'AuthService', 'toaster', function ($scope, $state, AuthService, toaster) {
-    $scope.register = function () {
-        $scope.error = false;
-        $scope.disabled = true;
-        AuthService.register($scope.registerForm.username, $scope.registerForm.fname, $scope.registerForm.lname, $scope.registerForm.email, $scope.registerForm.phnum, $scope.registerForm.pwd)
-            // handle success
-            .then(function () {
-                toaster.pop('success', "Hi," + $scope.registerForm.fname + " ", "Successfully Registered");
-                $state.go('login');
-                $scope.disabled = false;
-                $scope.registerForm = " ";
-            })
-            // handle error
-            .catch(function () {
-                $scope.error = true;
-                toaster.pop('error', "Username Already exists", null, 'trustedHtml');
-                $scope.errorMessage = "Something went wrong!";
-                $scope.disabled = false;
-            });
-    };
-}])
+            $scope.limit = 3;
+            $scope.loadMore = function () {
+                $scope.increment = $scope.limit + 3;
+                $scope.limit = $scope.increment > $scope.lDatas.length ? $scope.lDatas.length : $scope.increment;
+                console.log('Here is an limit:' + $scope.limit);
+            }
+
+            //Get authorList
+            $scope.getAuthorList = function () {
+                var id = localStorage.id;
+                apiService.getUsers('/users/api/getUsers', function (response) {
+                    $scope.user = response.data;
+                });
+            }
+            $scope.goTop = function () {
+                $location.hash('top')
+            }
+        }])
+app.controller('regCtrl',
+    ['$scope', '$state', 'AuthService', 'toaster',
+        function ($scope, $state, AuthService, toaster) {
+            $scope.register = function () {
+                $scope.error = false;
+                $scope.disabled = true;
+                AuthService.register($scope.registerForm.username, $scope.registerForm.fname, $scope.registerForm.lname, $scope.registerForm.email, $scope.registerForm.phnum, $scope.registerForm.pwd)
+                    // handle success
+                    .then(function () {
+                        toaster.pop('success', "Hi," + $scope.registerForm.fname + " ", "Successfully Registered");
+                        $state.go('login');
+                        $scope.disabled = false;
+                        $scope.registerForm = " ";
+                    })
+                    // handle error
+                    .catch(function () {
+                        $scope.error = true;
+                        toaster.pop('error', "Username Already exists", null, 'trustedHtml');
+                        $scope.errorMessage = "Something went wrong!";
+                        $scope.disabled = false;
+                    });
+            };
+        }])
 app.controller('loginCtrl',
-    ['$scope', '$http', '$state', 'AuthService', 'toaster', 'cfpLoadingBar',
-        function ($scope, $http, $state, AuthService, toaster, cfpLoadingBar) {
+    ['$scope', '$rootScope', '$http', '$state', 'AuthService', 'toaster',
+        function ($scope, $rootScope, $http, $state, AuthService, toaster) {
             $scope.Userlogin = function () {
                 // initial values
                 $scope.error = false;
@@ -119,47 +67,100 @@ app.controller('loginCtrl',
                 AuthService.login($scope.loginForm.username, $scope.loginForm.password)
                     // handle success
                     .then(function (response) {
-                        console.log(response.data.data._id);
                         localStorage.setItem("id", response.data.data._id);
-                        cfpLoadingBar.complete();
                         toaster.pop('success', "Welcome To Poetry");
+                        $rootScope.loggedIn = true;
                         $state.go('dashboard', { ID: response.data.data._id });
                         $scope.disabled = false;
                         $scope.loginForm = {};
                     })
                     // handle error
                     .catch(function () {
-                        cfpLoadingBar.start();
                         $scope.error = true;
-                        // $scope.errorMessage = "Invalid username and/or password";
                         toaster.pop('error', '', "Invalid username and password", null, 'trustedHtml');
-
                         $scope.disabled = false;
                         $scope.loginForm = {};
                     });
             };
         }])
-app.controller('dashboardCtrl', ['$scope','$state', '$http', 'toaster', 'AuthService', 'apiService', function ($scope,$state,$http, toaster, AuthService, apiService) {
-    $scope.story = {};
-    $scope.logOut=function(){
-        $state.go('poetry');
-    }
-    $scope.changeText = function () {
-        $scope.story.id = localStorage.id;
-        if (!$scope.story.text && !$scope.story.title) {
-            toaster.pop('error', '', "Please fill the fileds", null, 'trustedHtml');
-        } else {
-                apiService.getUserData('/users/api/story',$scope.story,function(response){
-                alert('Api service');
-                console.log(response);
-            })
+app.controller('dashboardCtrl',
+    ['$scope', '$state', '$http', 'toaster', 'AuthService', 'apiService',
+        function ($scope, $state, $http, toaster, AuthService, apiService) {
+            $scope.story = {};
+            $scope.c = '';
+            $scope.chat = function () {
+                $scope.c = true;
+            }
+
+            $scope.close = function () {
+                $scope.c = false;
+            }
+
+            $scope.sendMsg = function (msg) {
+                $scope.m = msg;
+                //console.log(msg);
+            }
+
+            $scope.logOut = function () {
+                $state.go('poetry');
+            }
+
+            $scope.changeText = function () {
+                $scope.story.id = localStorage.id;
+                if (!$scope.story.text && !$scope.story.title) {
+                    toaster.pop('error', '', "Please fill the fileds", null, 'trustedHtml');
+                } else {
+                    apiService.getUserData('/users/api/story', $scope.story, function (response) {
+                        $scope.story = '';
+                        $scope.showData();
+                        console.log(response);
+                    })
+                }
+            }
+
+            $scope.showData = function () {
+                var id = localStorage.id;
+                $scope.sData = [];
+                apiService.getStoryData('/users/api/getStory', function (response) {
+                    $scope.usersDetails = response.data;
+                })
+            }
+
+            $scope.deteleStory = function (id) {
+                apiService.DeleteStory('/users/api/deleteStory', id, function (response) {
+                    $scope.showData();
+                })
+            }
+
+            $scope.getUsers = function () {
+                apiService.getUsers('/users/api/getUsers', function (response) {
+                    $scope.user = response.data;
+                });
+            }
+
+            $scope.getUserById=function(){
+                var id=localStorage.id;
+                apiService.getUserById('/users/api/getUserByID',id,function(response){
+                    $scope.userById=response.data;
+                    console.log($scope.userById);
+                });
+            }
+
+            $scope.goSetting = function () {
+                $state.go('setting');
+            }
+
+            $scope.goDashboard = function () {
+                $state.go('dashboard');
+            }
+
+        }])
+
+app.filter('subString', function () {
+    return function (str, start, end) {
+        console.log(start, end);
+        if (str != undefined) {
+            return str.substr(start, end);
         }
-
     }
-    var id = localStorage.id;
-    $http.get('/users/api/' + id).success(function (response) {
-        $scope.usersDetails = response;
-        console.log( $scope.usersDetails);
-    });
-}]);
-
+})

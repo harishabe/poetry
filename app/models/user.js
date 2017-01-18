@@ -23,6 +23,10 @@ module.exports.getUserById = function (id, callback) {
     users.findById(id, callback);
 }
 
+module.exports.getUsers = function (callback) {
+    users.find(callback);
+}
+
 module.exports.saveStory = function (story, callback) {
     users.create(story, callback);
 }

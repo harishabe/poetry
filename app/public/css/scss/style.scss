@@ -11,6 +11,9 @@ body{
         color: white !important;
         height: 73px;
         border-radius:0px;
+        position: fixed;
+        width: 100%;
+        z-index: 999;
         .container-fluid{       
                 margin-top:10px;
                
@@ -127,6 +130,13 @@ body{
 }
 .circle.text-left {
     margin-left: 0;
+}
+.loadMore{
+  color:#000;
+  background-color:#f5f5f5 !important;
+  margin: 20px 0px 20px 0px;
+  text-align:center;
+  border-color:#dddddd !important;
 }
 
 //######################SideBar###########################//

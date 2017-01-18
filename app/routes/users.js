@@ -60,17 +60,28 @@ router.post('/login', function (req, res, next) {
   })(req, res, next);
 });
 
+//########################### USERS ##########################//
 
+router.get('/api/getUserByID/:_id', function (req, res) {
+  var id = req.params._id;
+  User.getUserById(id,function (err, User) {
+    if (err) {
+      throw err;
+    }
+    res.json(User);
+  })
+})
 
-router.get('/api/:_id', function (req, res) {
-  User.getUserById(req.params._id, function (err, User) {
+router.get('/api/getUsers', function (req, res) {
+  User.getUsers(function (err, User) {
     if (err) {
       throw err;
     }
     res.json(User);
   });
+})
 
-});
+//########################### END USERS ##########################//
 
 router.post('/api/story', function (req, res) {
   var storyData = {};
@@ -88,8 +99,9 @@ router.post('/api/story', function (req, res) {
   });
 });
 
-router.get('/api/getStory/:userId', function (req, res) {
-  Story.getStoryById(req.params.userId, function (err, Story) {
+
+router.get('/api/getStory', function (req, res) {
+  Story.getStoryById(function (err, Story) {
     if (err) {
       throw err;
     }
@@ -98,6 +110,16 @@ router.get('/api/getStory/:userId', function (req, res) {
 });
 
 
+router.delete('/api/deleteStory/:_id', function (req, res) {
+  var id = req.params._id;
+  Story.removeStory(id, function (err, Story) {
+    if (err) {
+      throw err;
+    }
+    res.json(Story);
+  });
+
+});
 
 
 module.exports = router;

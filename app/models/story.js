@@ -1,11 +1,9 @@
 var mongoose = require('mongoose');
 var User = require('./user');
-console.log("6")
 var ObjectId = mongoose.Schema.Types.ObjectId;
 var storeSchema = mongoose.Schema({
     userId: {
-       type: mongoose.Schema.Types.ObjectId,
-       ref: 'users'
+       type: String,
         //required: true
     },
     title: {
@@ -30,8 +28,12 @@ module.exports.addStory = function (storyData, callback) {
     story.create(storyData, callback);
 };
 
-module.exports.getStoryById = function (userId, callback) {
-    story.findById(userId, callback);
+
+module.exports.getStoryById = function (callback,limit) {
+    story.find(callback).limit(limit);
+};
+
+module.exports.removeStory=function (id,callback) {
+    var query={_id:id};
+    story.remove(query,callback);
 }
-
-

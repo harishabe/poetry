@@ -35,12 +35,9 @@ app.factory('AuthService',['$q', '$timeout', '$http',function($q, $timeout, $htt
 
     }
 
-
      function register(username,email,phnum,fname,lname, password) {
-
       // create a new instance of deferred
       var deferred = $q.defer();
-
       // send a post request to the server
       $http.post('/users/register',
         {username:username,email:email,phnum:phnum,fname:fname,lname:lname,password: password})
@@ -61,8 +58,4 @@ app.factory('AuthService',['$q', '$timeout', '$http',function($q, $timeout, $htt
       return deferred.promise;
 
     }
-
-   
-
-
 }]);
